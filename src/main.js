@@ -7,7 +7,10 @@ import 'jquery'
 import 'popper.js'
 import 'bootstrap'
 
+import './form'
+import { router } from './router'
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
