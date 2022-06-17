@@ -94,8 +94,8 @@
         nombreMaxLength : 15,
         edadMin : 18,
         edadMax : 120,
-        url: 'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos',
-        ingresos: []
+        // url: 'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos',
+        // ingresos: []
       }
     },
     methods: {
@@ -107,25 +107,25 @@
         }
       },
       enviar() {
-        this.postIngreso()
+        this.cargarIngreso()
         this.formData = this.getInicialData()
         this.formState._reset() 
       },
-       async postIngreso() {
-        let ingresoNew = {
-          nombre: this.formData.nombre,
-          edad: this.formData.edad,
-          email: this.formData.email
-        }
+      //  async postIngreso() {
+      //   let ingresoNew = {
+      //     nombre: this.formData.nombre,
+      //     edad: this.formData.edad,
+      //     email: this.formData.email
+      //   }
 
-        try {
-          let { data: ingreso } = await this.axios.post(this.url, ingresoNew, {'content-type' : 'application/json'})
-          this.ingresos.push(ingreso)
-        }
-        catch(error) {
-          console.error('Error en postIngreso()', error.message)
-        }
-      },
+      //   try {
+      //     let { data: ingreso } = await this.axios.post(this.url, ingresoNew, {'content-type' : 'application/json'})
+      //     this.ingresos.push(ingreso)
+      //   }
+      //   catch(error) {
+      //     console.error('Error en postIngreso()', error.message)
+      //   }
+      // },
     },
     computed: {
 
