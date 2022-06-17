@@ -1,6 +1,7 @@
 <template>
 
   <section class="src-components-formulario">
+    <h1>FOMULARIO</h1>
     <vue-form :state="formState" @submit.prevent="enviar()">
     <validate tag="div">
           <label for="nombre">Nombre</label>
