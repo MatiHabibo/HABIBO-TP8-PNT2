@@ -9,6 +9,7 @@ import 'bootstrap'
 
 import './form'
 import { router } from './router'
+import './axios'
 
 new Vue({
   router,

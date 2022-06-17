@@ -2,6 +2,16 @@
 
   <section class="src-components-vista">
     <h1>src-components-vista Component</h1>
+     <button class="btn btn-success mr-2 mb-3" @click="getIngresos()">GET</button>
+     
+      <div class="media alert alert-info" v-for="(ingreso,index) in ingresos" :key="index">
+          <div class="media-body ml-4">
+              <br>
+              <p>Nombre: <b>{{ ingreso.nombre }}</b></p>
+              <p>Edad: <i>{{ ingreso.edad }}</i></p>
+              <p>Mail: {{ ingreso.email }}</p>
+          </div>
+      </div>
   </section>
 
 </template>
@@ -16,11 +26,21 @@
     },
     data () {
       return {
-
+        url: 'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos',
+        ingresos: []
       }
     },
     methods: {
-
+      async getIngresos() {
+        try {
+          let { data: ingresos } = await this.axios(this.url)
+          console.log('AXIOS GET ingresos', ingresos)
+          this.ingresos = ingresos
+        }
+        catch(error) {
+          console.error('Error en getIngresos()', error.message)
+        }
+      },
     },
     computed: {
 
