@@ -1,12 +1,13 @@
 <template>
 
   <section class="src-components-vista">
-    <h1>src-components-vista Component</h1>
-     <button class="btn btn-success mr-2 mb-3" @click="getIngresos()">GET</button>
+    <h1>VISTA DE LOS INGRESOS</h1>
+     <button class="btn btn-success mr-2 mb-3" @click="getIngresos()">Ver ingresos</button>
      
       <div class="media alert alert-info" v-for="(ingreso,index) in ingresos" :key="index">
           <div class="media-body ml-4">
               <br>
+              <p>Id: <b>{{ ingreso.id }}</b></p>
               <p>Nombre: <b>{{ ingreso.nombre }}</b></p>
               <p>Edad: <i>{{ ingreso.edad }}</i></p>
               <p>Mail: {{ ingreso.email }}</p>
