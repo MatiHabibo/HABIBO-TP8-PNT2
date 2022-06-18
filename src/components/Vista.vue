@@ -2,8 +2,14 @@
 
   <section class="src-components-vista">
     <h1>VISTA DE LOS INGRESOS</h1>
-     <button class="btn btn-success mr-2 mb-3" @click="getIngresos()">Ver ingresos</button>
+     <!-- <button class="btn btn-success mr-2 mb-3" @click="getIngresos()">Ver ingresos</button> -->
      
+
+      <div v-show="!ingresos.length">
+        <div class="alert alert-warning">
+        <p>No hay usuarios para mostrar</p>
+        </div>
+      </div>
       <div class="media alert alert-info" v-for="(ingreso,index) in ingresos" :key="index">
           <div class="media-body ml-4">
               <br>
@@ -22,29 +28,23 @@
   export default  {
     name: 'src-components-vista',
     props: [],
+    beforeMount(){
+      this.$store.dispatch('obtenerIngresos');
+    },
     mounted () {
 
     },
     data () {
       return {
-        url: 'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos',
-        ingresos: []
       }
     },
     methods: {
-      async getIngresos() {
-        try {
-          let { data: ingresos } = await this.axios(this.url)
-          console.log('AXIOS GET ingresos', ingresos)
-          this.ingresos = ingresos
-        }
-        catch(error) {
-          console.error('Error en getIngresos()', error.message)
-        }
-      },
+
     },
     computed: {
-
+      ingresos(){
+        return this.$store.state.ingresos;
+      }
     }
 }
 

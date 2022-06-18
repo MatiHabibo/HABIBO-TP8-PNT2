@@ -10,19 +10,35 @@ export default new Vuex.Store({
         ingresos: []
     },
     actions : {
-        async guardar({commit}){
+        async guardar(ingreso){
         try{
-            let {data : ingresos } = await axios(this.url)
-            commit('postIngreso', ingresos)
-
+            await this.axios.post(this.url, ingreso, {'content-type' : 'application/json'})
+             return true
         }catch(error){
-            // console.error(error)
+      //       console.error(error)
+             return false
         }        
     },
+    async obtenerIngresos({commit}){
+        try{
+             const {ingre} = await axios(this.url);
+             commit('postIngreso', ingre);
+             }catch(e){
+                console.log(e.message);
+             }
+
+        }   
     },
     mutations : {
         postIngreso(state, ingresos){
+            // let { data: ingresos } = await this.axios(this.url)
             state.ingresos = ingresos
-        }
-    }
+        },
+        // mostrarIngresos(){
+        //     let ing = this.$store.state.ingresos
+        //     // console.error('mostrarContadorVuex ', contador )
+        //     return ing
+        //   },
+    },
+
 })
