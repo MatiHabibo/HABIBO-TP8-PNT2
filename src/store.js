@@ -4,41 +4,40 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+const URL = 'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos';
+
 export default new Vuex.Store({
     state : {
-        url :'https://62abb0cca62365888bdfdfc6.mockapi.io/ingresos',
-        ingresos: []
+        ingresos: [],
     },
     actions : {
-        async guardar(ingreso){
+        async postIngresos({commit},ingreso){
         try{
-            await this.axios.post(this.url, ingreso, {'content-type' : 'application/json'})
-             return true
+            await axios.post(URL, ingreso, {'content-type' : 'application/json'})
+            console.log('post ingresos de actions y la url es ' + URL + ' y el dato es ' +  ingreso)
+            commit('setStatus', true);
         }catch(error){
-      //       console.error(error)
-             return false
+            console.error(error)
+
         }        
     },
-    async obtenerIngresos({commit}){
+    async getIngresos({commit}){
         try{
-             const {ingre} = await axios(this.url);
-             commit('postIngreso', ingre);
+             const {ingre} = await axios(URL);
+             commit('setIngresos', ingre);
              }catch(e){
-                console.log(e.message);
+                console.log(e);
              }
 
         }   
     },
     mutations : {
-        postIngreso(state, ingresos){
-            // let { data: ingresos } = await this.axios(this.url)
+        setIngresos(state, ingresos){
             state.ingresos = ingresos
         },
-        // mostrarIngresos(){
-        //     let ing = this.$store.state.ingresos
-        //     // console.error('mostrarContadorVuex ', contador )
-        //     return ing
-        //   },
+        setStatus(state, status) {
+            state.status = status;
+          },
     },
 
 })

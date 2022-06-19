@@ -106,7 +106,12 @@
       },
       enviar() {
         console.log(this.formData);
-        this.$store.dispatch("guardar", this.formData);
+        var ing = {
+          nombre: this.formData.nombre,
+          edad: this.formData.edad,
+          mail: this.formData.email,
+         }
+        this.$store.dispatch("postIngresos", ing );
         this.formData = this.getInicialData()
         this.formState._reset() 
       },
