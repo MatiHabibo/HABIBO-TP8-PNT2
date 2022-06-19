@@ -23,8 +23,9 @@ export default new Vuex.Store({
     },
     async getIngresos({commit}){
         try{
-             const {ingre} = await axios(URL);
-             commit('setIngresos', ingre);
+             const { data } = await axios(URL);
+             console.log(data)
+             commit('setIngresos', data);
              }catch(e){
                 console.log(e);
              }
@@ -32,8 +33,8 @@ export default new Vuex.Store({
         }   
     },
     mutations : {
-        setIngresos(state, ingresos){
-            state.ingresos = ingresos
+        setIngresos(state, data){
+            state.ingresos = data
         },
         setStatus(state, status) {
             state.status = status;
